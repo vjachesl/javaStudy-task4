@@ -2,18 +2,27 @@
 <table>
 	<tr>
 		<td>
-			<div class="menu">
+			<div class="greeting">
 				<c:choose>
 				<c:when test="${empty admin}">
 					<a href="<c:url value="/pages/admin_login"/>"><fmt:message key="welcome_jsp.label.admin_login_page"></fmt:message></a>
 				</c:when>
 				<c:otherwise>
 					Welcome admin, <b>${sessionScope.admin.getLogin()}</b>
-					<form method="post" action="admin_logout">
-						<input type="submit" name="logout" value="Logout"/>
-						<form/>
-						</c:otherwise>
-						</c:choose>
+				</c:otherwise>
+				</c:choose>
+			</div>
+		</td>
+		<td>
+			<div class="logout">
+				<c:choose>
+				<c:when test="${empty admin}">
+
+				</c:when>
+				<c:otherwise>
+					<a href="<c:url value="/pages/admin_logout"/>">Admin logout</a>
+					</c:otherwise>
+					</c:choose>
 			</div>
 		</td>
 		<td>
@@ -28,10 +37,4 @@
 		</td>
 	</tr>
 </table>
-
-
-
-<br>
-<br>
-<br>
-<br>
+<hr>

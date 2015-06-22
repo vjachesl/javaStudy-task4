@@ -12,10 +12,8 @@ public class AdminLogout implements Action {
     public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
         LOG.info("Admin was removed from session. session was destroyed");
         request.getSession().setAttribute("admin", null);
-//        request.getSession(false);
-//        request.getSession().invalidate();
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/view/index.jsp");
-        dispatcher.forward(request, response);
-        return ""; //Todo - check
+        request.getSession(false);
+        request.getSession().invalidate();
+        return "index"; //Todo - check
     }
 }

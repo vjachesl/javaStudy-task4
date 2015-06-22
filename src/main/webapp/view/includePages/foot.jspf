@@ -1,5 +1,7 @@
 <%--========== Footer (bottom area). ================================--%>
-
-<tr>
-	<td id="footer">&copy;City Transport System. 2015. Viacheslav Chichin.</td>
-</tr>
+<hr>
+<table>
+	<tr>
+		<td id="footer">&copy;City Transport System. 2015. Viacheslav Chichin.</td>
+	</tr>
+</table>

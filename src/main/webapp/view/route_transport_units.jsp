@@ -1,18 +1,12 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: viacheslav
-  Date: 16.06.15
-  Time: 12:50
-  To change this template use File | Settings | File Templates.
---%><%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
-<!DOCTYPE html>
+<%@ include file="/view/includePages/tag_direct.jspf"%>
+<%@ include file="/view/includePages/page_direct.jspf"%>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>List of transport units on the route</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>City Transport System</title>
 </head>
 <body>
+<%@ include file="/view/includePages/loc_login.jspf"%>
 <div id="routs-transport-units">
   <c:choose>
     <c:when test="${empty transportUnits}">
@@ -35,17 +29,20 @@
             <tr>
               <td><c:out value="${unit.UNIT_ID()}"></c:out></td>
               <td> </td>
-              <td><c:out value="${unit.MODEL_NAME_EN()}"/></td>
+              <td><c:out value="${language eq 'ru' ? unit.MODEL_NAME_RU() : unit.MODEL_NAME_EN()}"></c:out></td>
               <td> </td>
-              <td><c:out value="${route.TRANSPORT_TYPE()}"/></td>
+              <td><c:out value="${language eq 'ru' ? unit.TRANSPORT_TYPE().getNameRu() : unit.TRANSPORT_TYPE().getNameEn()}"></c:out></td>
               <td> </td>
-              <td><input type="submit" class="button-accept" name="${route}" value="Back To Routes List"/></td>
-            </tr>
+             </tr>
           </c:forEach>
         </table>
+      <input type="submit" class="button-accept" name="${route}" value="Back To Routes List"/>
     </form>
      </c:otherwise>
   </c:choose>
 </div>
+<br>
+<br>
+<%@ include file="/view/includePages/foot.jspf"%>
 </body>
 </html>

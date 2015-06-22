@@ -24,7 +24,7 @@
       <tr><td>Route Name (English):</td><td><input type="text" name="route_name_en"></td> </tr>
       <tr><td> Route Name (Russian):</td><td> <input type="text" name="route_name_ru"></td> </tr>
       <tr><td>Route Transport Type(one of the next values: tram, trolleybus, bus):</td><td> <input type="text" name="route_transp_type"></td> </tr>
-      <tr><input type="submit" value="Add"></tr>
+      <tr><td></td><td><input type="submit" value="Add"></td></tr>
     </table>
   </form>
 </div>

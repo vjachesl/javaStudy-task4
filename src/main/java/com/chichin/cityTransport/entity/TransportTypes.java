@@ -8,10 +8,10 @@ public enum TransportTypes {
     BUS("Автобус","Bus"),
     TROLLEYBUS("Троллейбус","Trolleybus");
 
-    String nameRus;
+    String nameRu;
     String nameEn;
     TransportTypes(String val1, String val2) {
-        this.nameRus = val1;
+        this.nameRu = val1;
         this.nameEn = val2;
     }
 
@@ -19,7 +19,7 @@ public enum TransportTypes {
         return nameEn;
     }
 
-    public String getNameRus(){
-        return nameRus;
+    public String getNameRu(){
+        return nameRu;
     }
 }

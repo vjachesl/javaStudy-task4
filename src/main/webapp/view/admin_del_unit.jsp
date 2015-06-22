@@ -7,7 +7,7 @@
 </head>
 <body>
 <%@ include file="/view/includePages/logout_cabinet.jspf"%>
-<h3>Delete stop</h3>
+<h3>Delete Unit</h3>
 <p>Beware! you want to delete stop</p>
 <c:choose>
   <c:when test="${not empty message}">

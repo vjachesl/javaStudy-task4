@@ -53,7 +53,7 @@
             <td><input type="submit" class="button-accept" name="admin_new_stop" value="Add new stop"></td>
             <td><input type="submit" class="button-accept" name="admin_delete_stop" value="Delete Stop"></td>
             <td><input type="submit" class="button-accept" name="admin_new_unit" value="Add new Unit"></td>
-            <td><input type="submit" class="button-accept" name="admin_del_unit" value="Delete unit"></td>
+            <td><input type="submit" class="button-accept" name="admin_delete_unit" value="Delete unit"></td>
           </tr>
           </table>
         </form>

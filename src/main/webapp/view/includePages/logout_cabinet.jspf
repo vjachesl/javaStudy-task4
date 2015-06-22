@@ -8,12 +8,10 @@
 					<a href="<c:url value="/pages/admin_login"/>"><fmt:message key="welcome_jsp.label.admin_login_page"></fmt:message></a>
 				</c:when>
 				<c:otherwise>
-					Welcome admin, <b>${sessionScope.admin.getLogin()}</b>
-					<form method="post" action="admin_cabinet">
-					<input type="submit" name="logout" value="Logout"/>
-					<form/>
+					Welcome admin,  <b>${sessionScope.admin.getLogin()}    </b>
+					<a href="<c:url value="/pages/admin_logout"/>">Admin logout</a>
 
-						</c:otherwise>
+				</c:otherwise>
 						</c:choose>
 			</div>
 		</td>

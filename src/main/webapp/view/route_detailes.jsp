@@ -20,14 +20,16 @@
         <table style="margin: auto">
             <tr>
                 <th><fmt:message key="route_detailes_jsp.label.stop_number"></fmt:message></th>
+                <th></th>
                 <th><fmt:message key="route_detailes_jsp.label.stop_name"></fmt:message></th>
+                <th></th>
                 <th><fmt:message key="route_detailes_jsp.label.stop_geopoint"></fmt:message></th>
             </tr>
             <c:forEach items="${allStops}" var="stop">
                 <tr>
                     <td><c:out value="${stop.STOP_ID()}"></c:out></td>
                     <td> </td>
-                    <td><c:out value="${stop.getNameEn()}"/></td>
+                    <td><c:out value="${language eq 'ru' ? stop.getNameRu() : stop.getNameEn()}"></c:out></td>
                     <td> </td>
                     <td><c:out value="${stop.getGeoPoint()}"/></td>
                 </tr>
@@ -49,5 +51,8 @@
         </c:otherwise>
         </c:choose>
 </div>
+<br>
+<br>
+<%@ include file="/view/includePages/foot.jspf"%>
 </body>
 </html>

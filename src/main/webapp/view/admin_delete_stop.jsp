@@ -11,8 +11,9 @@
 <p>Beware! you want to delete stop</p>
 <c:choose>
   <c:when test="${not empty message}">
-    <h3>Message from server:</h3>
-    <h3><c:out value="${message}"></c:out></h3>
+    <hr>
+    <h3>Message from server: <c:out value="${message}"></c:out></h3>
+    <hr>
   </c:when>
   <c:otherwise>
   </c:otherwise>

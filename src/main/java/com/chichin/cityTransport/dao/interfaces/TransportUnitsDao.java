@@ -14,6 +14,7 @@ public interface TransportUnitsDao {
     public int addNewTransportUnit(TransportUnit unit);
     public int assignTransportUnitOnRoute(int unitId, int routeId);
     public int removeTransportUnitFromRoute(int unitId);
+    public int removeTransportUnit(int unitId);
 }
 
 

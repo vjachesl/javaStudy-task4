@@ -33,6 +33,11 @@ public class ActionFactory {
 
     public static Action getAction(HttpServletRequest request) {
         LOG.debug("tryed to ask factory for action = " + request.getPathInfo());
+        System.out.println("----- request.getPathInfo" + request.getPathInfo());
+        System.out.println("----- request.getRequestURI()"+request.getRequestURI());
+        System.out.println("----- request.getContextPath()"+request.getContextPath());
+
+
         return actions.get(request.getPathInfo());
     }
 }

@@ -9,14 +9,14 @@ public class TransportUnit {
     private final String MODEL_NAME_EN;
     private final String MODEL_NAME_RU;
     private TransportTypes TRANSPORT_TYPE;
-    private Route route;
+    private int routeId;
 
-    public TransportUnit(int UNIT_ID, String modelNameEn, String modelNameRu, TransportTypes TRANSPORT_TYPE, Route route) {
+    public TransportUnit(int UNIT_ID, String modelNameEn, String modelNameRu, TransportTypes TRANSPORT_TYPE, int routeId) {
         this.MODEL_NAME_EN = modelNameEn;
         this.MODEL_NAME_RU = modelNameRu;
         this.UNIT_ID = UNIT_ID;
         this.TRANSPORT_TYPE = TRANSPORT_TYPE;
-        this.route = route;
+        this.routeId = routeId;
     }
 
     public int UNIT_ID() {
@@ -36,15 +36,15 @@ public class TransportUnit {
     }
 
     public void setOnRoute(TransportUnit unit, Route route){
-        this.route = route;
+        routeId = route.ROUTE_ID();
     }
 
-    public Route getRoute() {
-        return route;
+    public int getRoute() {
+        return routeId;
     }
 
     public void relizefromRoute(TransportUnit unit, Route route){
-        this.route=null;
+        routeId=0;
     }
 
     @Override

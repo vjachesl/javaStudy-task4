@@ -14,8 +14,7 @@
       <h3><fmt:message key="routes_jsp.label.error"></fmt:message></h3>
     </c:when>
     <c:otherwise>
-      <h3>ROUTES</h3>
-      <form action="route_detailes" accept-charset="UTF-8" method="post">
+       <form action="route_detailes" accept-charset="UTF-8" method="post">
         <table style="margin: auto">
           <tr>
             <th><fmt:message key="routes_jsp.label.route_number"></fmt:message></th>
@@ -29,10 +28,10 @@
             <tr>
               <td><c:out value="${route.ROUTE_ID()}"></c:out></td>
               <td> </td>
-              <td><c:out value="${route.ROUTE_NAME_EN()}"/></td>
+              <td> <c:out value="${language eq 'ru' ? route.ROUTE_NAME_RU() : route.ROUTE_NAME_EN()}"></c:out></td>
               <td> </td>
-              <td><c:out value="${route.ROUTE_TRANSPORT_TYPE()}"/></td>
-              <td><input type="submit" class="button-accept" name="${route.ROUTE_ID()}" value=<fmt:message key="routes_jsp.button.detailes"></fmt:message>/></td>
+              <td><c:out value="${language eq 'ru' ? route.ROUTE_TRANSPORT_TYPE().getNameRu() : route.ROUTE_TRANSPORT_TYPE().getNameEn()}"></c:out></td>
+              <td><input type="submit" class="button-accept" name="${route.ROUTE_ID()}" value=<fmt:message key="routes_jsp.button.detailes"></fmt:message>></td>
             </tr>
           </c:forEach>
         </table>
@@ -41,8 +40,6 @@
     </c:otherwise>
   </c:choose>
 </div>
-<br>
-<br>
-  <%@ include file="/view/includePages/foot.jspf"%>
+ <%@ include file="/view/includePages/foot.jspf"%>
 </body>
 </html>

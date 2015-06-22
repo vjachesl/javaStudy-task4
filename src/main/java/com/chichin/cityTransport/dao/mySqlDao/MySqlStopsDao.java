@@ -58,6 +58,7 @@ public class MySqlStopsDao implements StopsDao {
                 stops.add(map(resultSet));
             }
         } catch (SQLException ex) {
+            LOG.warn("was caused an exception during query executing");
             ex.printStackTrace();
         } finally {
             close(resultSet);
