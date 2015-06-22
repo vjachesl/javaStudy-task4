@@ -1,0 +1,23 @@
+<!--page top area. -->
+<table>
+	<tr>
+		<td>
+			<div class="menu">
+				<c:choose>
+				<c:when test="${empty admin}">
+					<a href="<c:url value="/pages/admin_login"/>"><fmt:message key="welcome_jsp.label.admin_login_page"></fmt:message></a>
+				</c:when>
+				<c:otherwise>
+					Welcome admin, <b>${sessionScope.admin.getLogin()}</b>
+					<form method="post" action="admin_cabinet">
+					<input type="submit" name="logout" value="Logout"/>
+					<form/>
+
+						</c:otherwise>
+						</c:choose>
+			</div>
+		</td>
+
+	</tr>
+</table>
+
