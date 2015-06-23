@@ -39,11 +39,11 @@
 
         <p><fmt:message key="route_detailes_jsp.label.route_length"></fmt:message><fmt:formatNumber type="number" maxFractionDigits="2" value="${routeLength}" /> <fmt:message key="route_detailes_jsp.label.route_length_unit"></fmt:message></p>
 
-        <p><fmt:message key="route_detailes_jsp.label.route_time"></fmt:message> <fmt:formatNumber type="number" maxFractionDigits="2" value="${routeTime}" /></p>
+        <p><fmt:message key="route_detailes_jsp.label.route_time"></fmt:message> <fmt:formatNumber type="number" maxFractionDigits="0" value="${routeTime}" /></p>
 
         <p><fmt:message key="route_detailes_jsp.label.route_transp_unit"></fmt:message> <c:out value="${routeUnitsQuantity}"></c:out></p>
 
-        <p><fmt:message key="route_detailes_jsp.label.route_interval"></fmt:message> <fmt:formatNumber type="number" maxFractionDigits="2" value="${routeTime*2/routeUnitsQuantity}" /></p>
+        <p><fmt:message key="route_detailes_jsp.label.route_interval"></fmt:message> <fmt:formatNumber type="number" maxFractionDigits="0" value="${routeTime*2/routeUnitsQuantity}" /></p>
 
         <p><input type="submit" class="button-accept" name="route_transport_units" value="Get Transport Units"/></p>
 
