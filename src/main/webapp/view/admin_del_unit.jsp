@@ -7,22 +7,18 @@
 </head>
 <body>
 <%@ include file="/view/includePages/logout_cabinet.jspf"%>
-<h3>Delete Unit</h3>
-<p>Beware! you want to delete stop</p>
-<c:choose>
-  <c:when test="${not empty message}">
-    <h3>Message from server:</h3>
-    <h3><c:out value="${message}"></c:out></h3>
-  </c:when>
-  <c:otherwise>
-  </c:otherwise>
-</c:choose>
-<div id="delete stop">
-  <form action="admin_cabinet" accept-charset="UTF-8" method="post">
-    <input type="submit" value="Back to the Cabinet">
+<h3>Delete transport unit</h3>
+<p>Beware! you want to delete unit from system(delete_unit)</p>
+<div id="delete unit">
+  <form action="admin_del_unit" accept-charset="UTF-8" method="post">
+    Please provide valid unit #:<input type="text" name="unit_id"><br>
+    <input type="submit" value="Delete Unit">
   </form>
 </div>
-<br>
+<hr>
+<form action="admin_cabinet" accept-charset="UTF-8" method="post">
+  <input type="submit" value="Back to the Cabinet">
+</form>
 <br>
 <%@ include file="/view/includePages/foot.jspf"%>
 </body>

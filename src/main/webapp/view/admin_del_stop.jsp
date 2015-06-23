@@ -8,21 +8,17 @@
 <body>
 <%@ include file="/view/includePages/logout_cabinet.jspf"%>
 <h3>Delete stop</h3>
-<p>Beware! you want to delete stop</p>
-<c:choose>
-  <c:when test="${not empty message}">
-    <h3>Message from server:</h3>
-    <h3><c:out value="${message}"></c:out></h3>
-  </c:when>
-  <c:otherwise>
-  </c:otherwise>
-</c:choose>
+<p>Beware! you want to delete stop(delete_stop)</p>
 <div id="delete stop">
-  <form action="admin_cabinet" accept-charset="UTF-8" method="post">
-    <input type="submit" value="Back to the Cabinet">
+  <form action="admin_del_stop" accept-charset="UTF-8" method="post">
+    Please provide valid stop #:<input type="text" name="stop_id"><br>
+    <input type="submit" value="Delete Stop">
   </form>
 </div>
-<br>
+<hr>
+<form action="admin_cabinet" accept-charset="UTF-8" method="post">
+  <input type="submit" value="Back to the Cabinet">
+</form>
 <br>
 <%@ include file="/view/includePages/foot.jspf"%>
 </body>

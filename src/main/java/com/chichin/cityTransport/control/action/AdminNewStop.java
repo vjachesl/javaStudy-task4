@@ -31,13 +31,13 @@ public class AdminNewStop implements Action {
                 isFilled((String) request.getParameter("stop_lat"))== true ||
                 isFilled((String) request.getParameter("stop_long"))== true ){
             request.getSession().setAttribute("message", "You was input invalid parametrs. Please try again!");
-            return "admin_new_stop";
+            return "admin_result";
         }
         Stop stop = DataSourceDaoFactory.getDAOFactory().getStopsDao().getStop(Integer.parseInt(request.getParameter("stop_id")));
         if (stop!=null) {
             LOG.debug("dao said - this number is not empty");
             request.getSession().setAttribute("message", "You was input existing stop ID! Please change it!");
-            return "admin_new_stop";
+            return "admin_result";
         }
         int stopId = Integer.parseInt(request.getParameter("stop_id"));
         String stopNameRu = request.getParameter("stop_name_ru");
@@ -48,12 +48,12 @@ public class AdminNewStop implements Action {
         if (result!=1) {
             request.getSession().setAttribute("message", "some error. Stop was n't add");
             LOG.info("was not updated");
-            return "admin_new_stop";
+            return "admin_result";
         }
         else {
             LOG.info("was added");
             request.getSession().setAttribute("message", "was added");
-            return "admin_cabinet";
+            return "admin_result";
         }
     }
 

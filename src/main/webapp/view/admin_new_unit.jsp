@@ -9,15 +9,6 @@
 <%@ include file="/view/includePages/logout_cabinet.jspf"%>
 <h3>Add new Unit</h3>
 <p>Beware! You can't add UNIT with existing number and also all fields needs to be filled before pressing button "Add"</p>
-<c:choose>
-  <c:when test="${not empty message}">
-    <hr>
-    <h3>>Message from server: <c:out value="${message}"></c:out></h3>
-    <hr>
-  </c:when>
-  <c:otherwise>
-  </c:otherwise>
-</c:choose>
 <div id="new_unit">
   <form action="admin_new_unit" accept-charset="UTF-8" method="post">
     <table>
@@ -29,7 +20,10 @@
     </table>
   </form>
 </div>
-<br>
+<hr>
+<form action="admin_cabinet" accept-charset="UTF-8" method="post">
+  <input type="submit" value="Back to the Cabinet">
+</form>
 <br>
 <%@ include file="/view/includePages/foot.jspf"%>
 </body>

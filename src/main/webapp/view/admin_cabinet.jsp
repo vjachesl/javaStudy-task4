@@ -8,14 +8,6 @@
 <body>
 <%@ include file="/view/includePages/logout_cabinet.jspf"%>
 <h3>Admin Cabinet<br></h3>
-<c:choose>
-  <c:when test="${not empty message}">
-    <h3>Message from server:</h3>
-    <h3><c:out value="${message}"></c:out></h3>
-  </c:when>
-  <c:otherwise>
-  </c:otherwise>
-</c:choose>
   <div id="routs-result">
     <c:choose>
       <c:when test="${empty routes}">
@@ -51,9 +43,11 @@
             <td>General operations</td>
             <td><input type="submit" class="button-accept" name="admin_new_route" value="Add new Route"></td>
             <td><input type="submit" class="button-accept" name="admin_new_stop" value="Add new stop"></td>
-            <td><input type="submit" class="button-accept" name="admin_delete_stop" value="Delete Stop"></td>
+            <td><input type="submit" class="button-accept" name="admin_del_stop" value="Delete Stop"></td>
             <td><input type="submit" class="button-accept" name="admin_new_unit" value="Add new Unit"></td>
-            <td><input type="submit" class="button-accept" name="admin_delete_unit" value="Delete unit"></td>
+            <td><input type="submit" class="button-accept" name="admin_del_unit" value="Delete unit"></td>
+            <td><input type="submit" class="button-accept" name="admin_list_units" value="List of all Units"></td>
+            <td><input type="submit" class="button-accept" name="admin_list_stops" value="List of all stops"></td>
           </tr>
           </table>
         </form>

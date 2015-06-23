@@ -23,21 +23,21 @@ public class AdminDeleteRoute implements Action {
         Route route = DataSourceDaoFactory.getDAOFactory().getRouteDao().getRoute(Integer.parseInt(request.getParameter("route_id")));
         if (route==null) {
             LOG.debug("dao said - this number is not exists");
-            request.getSession().setAttribute("message", "You tried delete not existing route! Please reload page!");
-            return "admin_cabinet";
+            request.setAttribute("message", "You tried delete not existing route! Please reload page!");
+            return "admin_result";
         }
         int routeId = Integer.parseInt(request.getParameter("route_id"));
         int result = DataSourceDaoFactory.getDAOFactory().getRouteDao().removeRoute(routeId);
         if (result==0) {
-            request.getSession().setAttribute("message", "some error. Route was n't delete");
+            request.setAttribute("message", "some error. Route was n't delete");
             LOG.info("was not delete");
-            return "admin_cabinet";
+            return "admin_result";
         }
         else {
-            request.getSession().setAttribute("message", "Route was deleted sussesfully!");
+            request.setAttribute("message", "Route was deleted sussesfully!");
             LOG.info("was deleted route " + routeId + " by user" + request.getSession().getAttribute("admin").toString());
             request.getSession().setAttribute("routes", DataSourceDaoFactory.getDAOFactory().getRouteDao().getAllRoutes());
-            return "admin_cabinet";
+            return "admin_result";
         }
     }
 }

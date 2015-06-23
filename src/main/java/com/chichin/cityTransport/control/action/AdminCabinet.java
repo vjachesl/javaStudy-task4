@@ -1,8 +1,11 @@
 package com.chichin.cityTransport.control.action;
 
+import static com.chichin.cityTransport.control.Util.InputValidation.isPositiveDecimalNumber;
 import static com.chichin.cityTransport.control.Util.ParsingParametrs.*;
 import com.chichin.cityTransport.dao.factory.DaoFactory;
 import com.chichin.cityTransport.entity.Route;
+import com.chichin.cityTransport.entity.Stop;
+import com.chichin.cityTransport.entity.TransportUnit;
 import com.chichin.cityTransport.entity.User;
 import static com.chichin.cityTransport.control.Util.LoginCheck.*;
 import org.apache.log4j.Logger;
@@ -26,11 +29,28 @@ public class AdminCabinet implements Action {
             LOG.debug("Useradmin was putted in the session");
         }
         LOG.debug("was processed admin cabinet, because user already logged in");
+        request.removeAttribute("message");
+        // Get All nessessary Data - will be automaticaly update after
         request.getSession().setAttribute("routes", DataSourceDaoFactory.getDAOFactory().getRouteDao().getAllRoutes());
+        request.getSession().setAttribute("units", DataSourceDaoFactory.getDAOFactory().getTransportUnitsDao().getAllTransportUnits());
+        request.getSession().setAttribute("stops", DataSourceDaoFactory.getDAOFactory().getStopsDao().getAllStops());
+
         List<String> param = parseParametres(request.getParameterNames());
         for (String str : param) {
          if (str.contains(":")) {
-             request.getSession().setAttribute("route_id", str.substring(15));
+             if (isPositiveDecimalNumber(str.substring(15))== true ) {
+                 List<Stop> routeStops = DataSourceDaoFactory.getDAOFactory().getStopsDao().getRouteStops(Integer.parseInt(str.substring(15)));
+                 List<Stop> allStops = DataSourceDaoFactory.getDAOFactory().getStopsDao().getAllStops();
+                 List<TransportUnit> routeTransportUnits = DataSourceDaoFactory.getDAOFactory().getTransportUnitsDao().getRouteTransportUnits(Integer.parseInt(str.substring(15)));
+                 List<TransportUnit> routeZeroTransportUnits = DataSourceDaoFactory.getDAOFactory().getTransportUnitsDao().getRouteTransportUnits(0);
+                 request.getSession().setAttribute("route_units", routeTransportUnits);
+                 request.getSession().setAttribute("zero_units", routeZeroTransportUnits);
+                 request.getSession().setAttribute("route_stops", routeStops);
+                 request.getSession().setAttribute("all_stops", allStops);
+                 request.getSession().setAttribute("route_id", str.substring(15));
+             }
+
+
              LOG.debug("was processed next command " + str.substring(0, 14) + " with route ID " + str.substring(15));
              return str.substring(0,14);
          } else if (param.size()==1) return param.get(0);

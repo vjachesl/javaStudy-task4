@@ -9,7 +9,7 @@
 				</c:when>
 				<c:otherwise>
 					Welcome admin,  <b>${sessionScope.admin.getLogin()}    </b>
-					<a href="<c:url value="/pages/admin_logout"/>">Admin logout</a>
+					<a href="<c:url value="/pages/admin_logout"/>">logout</a>
 
 				</c:otherwise>
 						</c:choose>

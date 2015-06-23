@@ -31,13 +31,13 @@ public class AdminNewUnit implements Action {
                 isCyrillicWord((String) request.getParameter("unit_model_name_ru")) == false ||
                 isTransportType( request.getParameter("unit_transp_type"))== null ){
             request.getSession().setAttribute("message", "You was input invalid parametrs. Please try again!");
-            return "admin_new_unit";
+            return "admin_result";
         }
         TransportUnit unit = DataSourceDaoFactory.getDAOFactory().getTransportUnitsDao().getTransportUnit(Integer.parseInt(request.getParameter("unit_id")));
         if (unit!=null) {
             LOG.debug("dao said - this number is not empty");
             request.getSession().setAttribute("message", "You was input existing unit ID! Please change it!");
-            return "admin_new_unit";
+            return "admin_result";
         }
         int unitId = Integer.parseInt(request.getParameter("unit_id"));
         String unitNameRu = request.getParameter("unit_model_name_en");
@@ -48,12 +48,12 @@ public class AdminNewUnit implements Action {
         if (result!=1) {
             request.getSession().setAttribute("message", "some error. Unit was n't add");
             LOG.info("Unit was not updated");
-            return "admin_new_unit";
+            return "admin_result";
         }
         else {
             LOG.info("Unit was added");
             request.getSession().setAttribute("message", " Unit was added");
-            return "admin_cabinet";
+            return "admin_result";
         }
     }
 

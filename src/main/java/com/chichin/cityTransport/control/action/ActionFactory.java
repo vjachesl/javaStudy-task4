@@ -22,7 +22,7 @@ public class ActionFactory {
         actions.put("/admin_del_rout", new AdminDeleteRoute());
         actions.put("/admin_new_stop", new AdminNewStop());
         actions.put("/admin_del_stop", new AdminDeleteStop());
-        actions.put("/admin_add_stop", new AdminNewRouteStop());
+        actions.put("/admin_ass_stop", new AdminNewRouteStop());
         actions.put("/admin_rem_stop", new AdminRemoveRouteStop());
         actions.put("/admin_ass_unit", new AdminNewRouteUnit());
         actions.put("/admin_rem_unit", new AdminRemoveRouteUnit());
@@ -33,11 +33,6 @@ public class ActionFactory {
 
     public static Action getAction(HttpServletRequest request) {
         LOG.debug("tryed to ask factory for action = " + request.getPathInfo());
-        System.out.println("----- request.getPathInfo" + request.getPathInfo());
-        System.out.println("----- request.getRequestURI()"+request.getRequestURI());
-        System.out.println("----- request.getContextPath()"+request.getContextPath());
-
-
         return actions.get(request.getPathInfo());
     }
 }

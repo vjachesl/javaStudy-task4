@@ -30,13 +30,13 @@ public class AdminNewRoute implements Action {
             isCyrillicWord((String)  request.getParameter("route_name_ru")) == false ||
             isTransportType((String) request.getParameter("route_transp_type"))==null ){
                 request.getSession().setAttribute("message", "You was input invalid parametrs. Please try again!");
-                return "admin_new_route";
+                return "admin_result";
         }
         Route route = DataSourceDaoFactory.getDAOFactory().getRouteDao().getRoute(Integer.parseInt(request.getParameter("route_id")));
         if (route!=null) {
             LOG.debug("dao said - this number is not empty");
-            request.getSession().setAttribute("message", "You was input existing route ID! Please change it!");
-            return "admin_new_route";
+            request.setAttribute("message", "You was input existing route ID! Please change it!");
+            return "admin_result";
         }
         int routeId = Integer.parseInt(request.getParameter("route_id"));
         String routeNameRu = request.getParameter("route_name_ru");
@@ -44,14 +44,15 @@ public class AdminNewRoute implements Action {
         TransportTypes type = isTransportType((String) request.getParameter("route_transp_type"));
         int result = DataSourceDaoFactory.getDAOFactory().getRouteDao().addNewRoute(new Route(routeId, routeNameEn, routeNameRu, type));
         if (result!=1) {
-            request.getSession().setAttribute("message", "some error. Route was n't add");
+            request.setAttribute("message", "some error. Route was n't add");
             LOG.info("was not updated");
-            return "admin_new_route";
+            return "admin_result";
         }
         else {
             LOG.info("was added");
-            request.getSession().setAttribute("routes", DataSourceDaoFactory.getDAOFactory().getRouteDao().getAllRoutes());
-            return "admin_cabinet";
+            request.setAttribute("message", "Route was added");
+            request.setAttribute("routes", DataSourceDaoFactory.getDAOFactory().getRouteDao().getAllRoutes());
+            return "admin_result";
         }
     }
 

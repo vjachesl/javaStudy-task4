@@ -9,14 +9,6 @@
 <%@ include file="/view/includePages/logout_cabinet.jspf"%>
 <h3>Add new Stop</h3>
 <p>Beware! You can't add STOP with existing number and also all fields needs to be filled before pressing button "Add"</p>
-<c:choose>
-  <c:when test="${not empty message}">
-    <h3>Message from server:</h3>
-    <h3><c:out value="${message}"></c:out></h3>
-  </c:when>
-  <c:otherwise>
-  </c:otherwise>
-</c:choose>
 <div id="new_stop">
   <form action="admin_new_stop" accept-charset="UTF-8" method="post">
     <table>
@@ -29,7 +21,10 @@
     </table>
   </form>
 </div>
-<br>
+<hr>
+<form action="admin_cabinet" accept-charset="UTF-8" method="post">
+  <input type="submit" value="Back to the Cabinet">
+</form>
 <br>
 <%@ include file="/view/includePages/foot.jspf"%>
 </body>

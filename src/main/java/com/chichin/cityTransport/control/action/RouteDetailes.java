@@ -36,7 +36,7 @@ public class RouteDetailes implements Action {
                     request.getSession().setAttribute("routeUnitsQuantity", transportUnits.size());
                 }
                 double routeLength = route.getRouteLength();
-                int routeTime = route.getRouteTimeDerth();
+                double routeTime = route.getRouteTimeDerth();
                 request.getSession().setAttribute("allStops", allStops);
                 request.getSession().setAttribute("routeLength", routeLength);
                 request.getSession().setAttribute("routeTime", routeTime);

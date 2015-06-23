@@ -80,11 +80,11 @@ public class Route {
         }
     }
 
-    public int getRouteTimeDerth(){
+    public double getRouteTimeDerth(){
        double length = getRouteLength();
         System.out.println("route length"+length);
 
-       return 5;// (int) (length/CITY_AVERAGE_SPEED)*MINUTES_IN_HOUR;
+       return (length/CITY_AVERAGE_SPEED)*MINUTES_IN_HOUR;
     }
 
     // Рассчитываем расстояние между точками

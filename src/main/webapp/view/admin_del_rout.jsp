@@ -9,14 +9,6 @@
 <%@ include file="/view/includePages/logout_cabinet.jspf"%>
 <h3>Delete Route from the system</h3>
 <p>Beware! you want to delete route</p>
-<c:choose>
-  <c:when test="${not empty message}">
-    <h3>Message from server:</h3>
-    <h3><c:out value="${message}"></c:out></h3>
-  </c:when>
-  <c:otherwise>
-  </c:otherwise>
-</c:choose>
 <div id="delete route">
   <form action="admin_del_rout" accept-charset="UTF-8" method="post">
     <table>
@@ -26,6 +18,10 @@
     <input type="submit" value="Delete Route">
   </form>
 </div>
+<hr>
+<form action="admin_cabinet" accept-charset="UTF-8" method="post">
+  <input type="submit" value="Back to the Cabinet">
+</form>
 <br>
 <br>
 <%@ include file="/view/includePages/foot.jspf"%>
