@@ -1,10 +1,14 @@
 package com.chichin.cityTransport.control.filters;
 
 /**
- * Created by viacheslav on 13.06.15.
+ * Class for filtering incoming info
+ *
+ * @author Viacheslav Chichin
+ * @version 1.0  June 20, 2015.
  */
-import java.io.IOException;
 
+
+import java.io.IOException;
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
 import javax.servlet.FilterConfig;
@@ -44,7 +48,7 @@ public class EncodingFilter implements Filter {
         LOG.debug("EncodingFilter work");
 
         HttpServletRequest httpRequest = (HttpServletRequest) request;
-        LOG.debug("Admin status "+httpRequest.getSession().getAttribute("admin"));
+        LOG.debug("Admin status " + httpRequest.getSession().getAttribute("admin"));
         LOG.debug("Requested URI: " + httpRequest.getRequestURI());
 
         String requestEncoding = request.getCharacterEncoding();
@@ -54,11 +58,10 @@ public class EncodingFilter implements Filter {
         }
 
         LOG.debug("Checking setted locale at session....");
-        LOG.debug("locale is "+ request.getLocale());
+        LOG.debug("locale is " + request.getLocale());
 
 
         LOG.debug("EncodingFilter work finish");
-
 
 
         chain.doFilter(request, response);

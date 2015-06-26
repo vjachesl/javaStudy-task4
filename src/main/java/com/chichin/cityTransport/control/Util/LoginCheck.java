@@ -11,9 +11,9 @@ import org.apache.log4j.Logger;
 public class LoginCheck {
     private static final Logger LOG = Logger.getLogger(LoginCheck.class);
 
-    public static User loginCheck(String login, String pass){
+    public static User loginCheck(String login, String pass) {
         LOG.debug("User tryed to login with login: " + login + " and pass " + pass);
-        if(login == null || pass ==null) return null;
+        if (login == null || pass == null) return null;
         DaoFactory daoFactory = DataSourceDaoFactory.getDAOFactory();
         User admin = daoFactory.getUserDao().getUser(login, pass);
         LOG.debug("User was autorized: " + (admin != null));

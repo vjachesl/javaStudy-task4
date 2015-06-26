@@ -15,34 +15,38 @@ import java.util.List;
 import static com.chichin.cityTransport.dao.factory.DaoJdbcUtil.close;
 
 /**
- * Created by viacheslav on 13.06.15.
+ * Class for JDBC Stops DAO implementation
+ *
+ * @author Viacheslav Chichin
+ * @version 1.0  June 20, 2015.
  */
 public class MySqlStopsDao implements StopsDao {
     private static final Logger LOG = Logger.getLogger(MySqlStopsDao.class);
 
     private DaoFactory daoFactory;
+
     public MySqlStopsDao(DaoFactory daoFactory) {
         this.daoFactory = daoFactory;
     }
 
-    private static final String FIND_ALL_STOPS ="SELECT * FROM city_transport_db.stops";
+    private static final String FIND_ALL_STOPS = "SELECT * FROM city_transport_db.stops";
 
-    private static final String FIND_ALL_ROUTE_STOPS ="SELECT * FROM city_transport_db.stops\n" +
+    private static final String FIND_ALL_ROUTE_STOPS = "SELECT * FROM city_transport_db.stops\n" +
             "\tJOIN city_transport_db.routes_has_stops ON\n" +
             "\t city_transport_db.stops.STOP_ID = city_transport_db.routes_has_stops.stops_STOP_ID\n" +
             "\t WHERE routes_ROUTE_ID=(?) order by STOPS_ORDER_BY_ROUTE";
 
-    private static final String ADD_NEW_STOP ="INSERT INTO city_transport_db.stops \n" +
+    private static final String ADD_NEW_STOP = "INSERT INTO city_transport_db.stops \n" +
             "\t( STOP_ID, STOP_NAME_EN, STOP_NAME_RU, STOP_LAT, STOP_LONG)\n" +
             "\t values (?, ?, ?, ?, ?)";
 
-    private static final String ADD_ROUTE_STOP ="INSERT INTO city_transport_db.routes_has_stops\n" +
+    private static final String ADD_ROUTE_STOP = "INSERT INTO city_transport_db.routes_has_stops\n" +
             "\t (routes_ROUTE_ID, stops_STOP_ID, STOPS_ORDER_BY_ROUTE) values( ? , ? , ?)";
 
-    private static final String DELETE_ROUTE_STOP =" DELETE FROM city_transport_db.routes_has_stops\n" +
+    private static final String DELETE_ROUTE_STOP = " DELETE FROM city_transport_db.routes_has_stops\n" +
             "\t WHERE routes_ROUTE_ID=(?) AND stops_STOP_ID=(?)";
 
-    private static final String DELETE_STOP_BY_ID =" DELETE FROM city_transport_db.stops\n" +
+    private static final String DELETE_STOP_BY_ID = " DELETE FROM city_transport_db.stops\n" +
             "\t WHERE STOP_ID=(?)";
 
     public List<Stop> getAllStops() {
@@ -70,12 +74,13 @@ public class MySqlStopsDao implements StopsDao {
     }
 
     public Stop getStop(int stopId) {
-        LOG.info("finding stop "+stopId );
+        LOG.info("finding stop " + stopId);
         List<Stop> stops = getAllStops();
-        for (Stop st : stops) if (st.STOP_ID()==stopId) {
-            LOG.info("stop was found");
-            return st;
-        }
+        for (Stop st : stops)
+            if (st.STOP_ID() == stopId) {
+                LOG.info("stop was found");
+                return st;
+            }
         LOG.info("stop was not found");
         return null;
     }
@@ -103,7 +108,7 @@ public class MySqlStopsDao implements StopsDao {
         }
         LOG.info("list of stops was formed");
         return stops;
-     }
+    }
 
     public int addNewStop(Stop stop) {
         Connection connection = null;
@@ -117,7 +122,7 @@ public class MySqlStopsDao implements StopsDao {
             preparedStatement.setDouble(4, stop.getGeoPoint().getLat());
             preparedStatement.setDouble(5, stop.getGeoPoint().getLng());
             int result = preparedStatement.executeUpdate();
-            LOG.info("stop was added with result"+result);
+            LOG.info("stop was added with result" + result);
             return result;
         } catch (SQLException ex) {
             ex.printStackTrace();

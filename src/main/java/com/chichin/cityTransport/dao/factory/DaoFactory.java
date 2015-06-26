@@ -9,6 +9,15 @@ import com.chichin.cityTransport.dao.interfaces.UserDao;
 import java.sql.Connection;
 import java.sql.SQLException;
 
+/**
+ * Class for choice connection types
+ * and returns needed DAO FACTORY.
+ *
+ * @author Viacheslav Chichin
+ * @version 1.0  June 20, 2015.
+ */
+
+
 public abstract class DaoFactory {
 
     public enum ConnTypes {

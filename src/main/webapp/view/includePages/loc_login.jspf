@@ -1,40 +1,41 @@
 <!--page top area. -->
 <table>
-	<tr>
-		<td>
-			<div class="greeting">
-				<c:choose>
-				<c:when test="${empty admin}">
-					<a href="<c:url value="/pages/admin_login"/>"><fmt:message key="welcome_jsp.label.admin_login_page"></fmt:message></a>
-				</c:when>
-				<c:otherwise>
-					Welcome admin, <b>${sessionScope.admin.getLogin()}</b>
-				</c:otherwise>
-				</c:choose>
-			</div>
-		</td>
-		<td>
-			<div class="logout">
-				<c:choose>
-				<c:when test="${empty admin}">
+    <tr>
+        <td>
+            <div class="greeting">
+                <c:choose>
+                    <c:when test="${empty admin}">
+                        <a href="<c:url value="/pages/admin_login"/>"><fmt:message
+                                key="welcome_jsp.label.admin_login_page"></fmt:message></a>
+                    </c:when>
+                    <c:otherwise>
+                        Welcome admin, <b>${sessionScope.admin.getLogin()}</b>
+                    </c:otherwise>
+                </c:choose>
+            </div>
+        </td>
+        <td>
+            <div class="logout">
+                <c:choose>
+                    <c:when test="${empty admin}">
 
-				</c:when>
-				<c:otherwise>
-					<a href="<c:url value="/pages/admin_logout"/>">Admin logout</a>
-					</c:otherwise>
-					</c:choose>
-			</div>
-		</td>
-		<td>
-			<div class="lang">
-				<form>
-					<select id="language" name="language" onchange="submit()">
-						<option value="en" ${language == 'en' ? 'selected' : ''}>English</option>
-						<option value="ru" ${language == 'ru' ? 'selected' : ''}>Russian</option>
-					</select>
-				</form>
-			</div>
-		</td>
-	</tr>
+                    </c:when>
+                    <c:otherwise>
+                        <a href="<c:url value="/pages/admin_logout"/>">Admin logout</a>
+                    </c:otherwise>
+                </c:choose>
+            </div>
+        </td>
+        <td>
+            <div class="lang">
+                <form>
+                    <select id="language" name="language" onchange="submit()">
+                        <option value="en" ${language == 'en' ? 'selected' : ''}>English</option>
+                        <option value="ru" ${language == 'ru' ? 'selected' : ''}>Russian</option>
+                    </select>
+                </form>
+            </div>
+        </td>
+    </tr>
 </table>
 <hr>

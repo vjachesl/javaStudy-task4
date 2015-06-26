@@ -10,11 +10,11 @@ import java.util.*;
 public class ParsingParametrs {
     private static final Logger LOG = Logger.getLogger(ParsingParametrs.class);
 
-    public static List<String> parseParametres(Enumeration param){
+    public static List<String> parseParametres(Enumeration param) {
         List<String> res = new ArrayList<String>();
         while (param.hasMoreElements())
-                res.add((String) param.nextElement());
-        LOG.debug("Was parsed parametres and found "+res.size());
+            res.add((String) param.nextElement());
+        LOG.debug("Was parsed parametres and found " + res.size());
         return res;
     }
 }

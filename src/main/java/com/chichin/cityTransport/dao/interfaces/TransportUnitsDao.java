@@ -2,19 +2,29 @@ package com.chichin.cityTransport.dao.interfaces;
 
 
 import com.chichin.cityTransport.entity.TransportUnit;
+
 import java.util.List;
 
 /**
- * Created by viacheslav on 11.06.15.
+ * Interface for creating contract for transport units DAO implementation,
+ *
+ * @author Viacheslav Chichin
+ * @version 1.0  June 20, 2015.
  */
 public interface TransportUnitsDao {
-    public TransportUnit getTransportUnit(int unitId);
-    public List<TransportUnit> getAllTransportUnits();
-    public List<TransportUnit> getRouteTransportUnits(int routeId);
-    public int addNewTransportUnit(TransportUnit unit);
-    public int assignTransportUnitOnRoute(int unitId, int routeId);
-    public int removeTransportUnitFromRoute(int unitId);
-    public int removeTransportUnit(int unitId);
+    TransportUnit getTransportUnit(int unitId);
+
+    List<TransportUnit> getAllTransportUnits();
+
+    List<TransportUnit> getRouteTransportUnits(int routeId);
+
+    int addNewTransportUnit(TransportUnit unit);
+
+    int assignTransportUnitOnRoute(int unitId, int routeId);
+
+    int removeTransportUnitFromRoute(int unitId);
+
+    int removeTransportUnit(int unitId);
 }
 
 

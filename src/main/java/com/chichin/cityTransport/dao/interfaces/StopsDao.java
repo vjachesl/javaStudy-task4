@@ -5,14 +5,24 @@ import com.chichin.cityTransport.entity.Stop;
 import java.util.List;
 
 /**
- * Created by viacheslav on 13.06.15.
+ * Interface for creating contract for DAO stops implementation,
+ *
+ * @author Viacheslav Chichin
+ * @version 1.0  June 20, 2015.
  */
+
 public interface StopsDao {
-    public List<Stop> getAllStops();
-    public Stop getStop(int stopId);
-    public List<Stop> getRouteStops(int routeId);
-    public int addNewStop(Stop stop);
-    public int assignStopOnRoute(int stopId, int routeId, int orderByRoute);
-    public int removeStopFromRoute(int stopId, int routeId);
-    public int removeStop(int stopId);
+    List<Stop> getAllStops();
+
+    Stop getStop(int stopId);
+
+    List<Stop> getRouteStops(int routeId);
+
+    int addNewStop(Stop stop);
+
+    int assignStopOnRoute(int stopId, int routeId, int orderByRoute);
+
+    int removeStopFromRoute(int stopId, int routeId);
+
+    int removeStop(int stopId);
 }

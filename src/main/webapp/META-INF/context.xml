@@ -22,10 +22,10 @@
          org.gjt.mm.mysql.Driver - we recommend using Connector/J though.
          Class name for the official MySQL Connector/J driver is com.mysql.jdbc.Driver.
          -->
-    
+
     <!-- url: The JDBC connection url for connecting to your MySQL database.
          -->
-     <Resource
+    <Resource
             name="jdbc/My_DB"
             auth="Container"
             type="javax.sql.DataSource"

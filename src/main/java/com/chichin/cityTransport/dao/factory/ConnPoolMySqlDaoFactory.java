@@ -16,8 +16,16 @@ import javax.sql.DataSource;
 import java.sql.Connection;
 import java.sql.SQLException;
 
+/**
+ * Class for connection pull operating.
+ *
+ * @author Viacheslav Chichin
+ * @version 1.0  June 20, 2015.
+ */
+
 public class ConnPoolMySqlDaoFactory extends DaoFactory {
 
+    // store instance of pool
     private static DataSource pool;
 
     public ConnPoolMySqlDaoFactory() {

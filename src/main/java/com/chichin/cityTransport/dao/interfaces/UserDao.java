@@ -3,8 +3,11 @@ package com.chichin.cityTransport.dao.interfaces;
 import com.chichin.cityTransport.entity.User;
 
 /**
- * Created by viacheslav on 15.06.15.
+ * Interface for creating contract for user DAO implementation,
+ *
+ * @author Viacheslav Chichin
+ * @version 1.0  June 20, 2015.
  */
 public interface UserDao {
-    public User getUser(String login, String password);
+    User getUser(String login, String password);
 }

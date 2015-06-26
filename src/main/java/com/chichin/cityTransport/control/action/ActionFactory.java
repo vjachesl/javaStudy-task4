@@ -6,8 +6,19 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * Action factory for action classes new object creating.
+ *
+ * @author Viacheslav Chichin
+ * @version 1.0  June 10, 2015.
+ */
+
 public class ActionFactory {
+
+    // logger object
     private static final Logger LOG = Logger.getLogger(ActionFactory.class);
+
+    //map with
     private static final Map<String, Action> actions;
 
     static {
@@ -31,6 +42,12 @@ public class ActionFactory {
 
     }
 
+    /**
+     * Method returns result of action object working
+     *
+     * @param request the request object for parametrs getting ability
+     * @return String - result of action
+     */
     public static Action getAction(HttpServletRequest request) {
         LOG.debug("tryed to ask factory for action = " + request.getPathInfo());
         return actions.get(request.getPathInfo());

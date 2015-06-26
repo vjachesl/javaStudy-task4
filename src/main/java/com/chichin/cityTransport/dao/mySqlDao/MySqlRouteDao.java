@@ -1,6 +1,7 @@
 package com.chichin.cityTransport.dao.mySqlDao;
 
 import static com.chichin.cityTransport.dao.factory.DaoJdbcUtil.*;
+
 import com.chichin.cityTransport.dao.factory.DaoFactory;
 import com.chichin.cityTransport.dao.interfaces.RouteDao;
 import com.chichin.cityTransport.entity.Route;
@@ -15,17 +16,20 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by viacheslav on 13.06.15.
+ * Class for JDBC Routes DAO implementation
+ *
+ * @author Viacheslav Chichin
+ * @version 1.0  June 20, 2015.
  */
 public class MySqlRouteDao implements RouteDao {
     private static final Logger LOG = Logger.getLogger(MySqlRouteDao.class);
     private DaoFactory daoFactory;
 
-    private static final String FIND_ALL_ROUTES ="SELECT * FROM city_transport_db.routes";
-    private static final String ADD_NEW_ROUTE ="INSERT INTO city_transport_db.routes \n" +
+    private static final String FIND_ALL_ROUTES = "SELECT * FROM city_transport_db.routes";
+    private static final String ADD_NEW_ROUTE = "INSERT INTO city_transport_db.routes \n" +
             "\t( ROUTE_ID, ROUTE_NAME_EN, ROUTE_NAME_RU, ROUTE_TRANSPORT_TYPE)\n" +
             "\t values (?, ?, ?, ?)";
-    private static final String DELETE_ROUTE_BY_ID ="DELETE FROM city_transport_db.routes where city_transport_db.routes.ROUTE_ID=(?)";
+    private static final String DELETE_ROUTE_BY_ID = "DELETE FROM city_transport_db.routes where city_transport_db.routes.ROUTE_ID=(?)";
 
     public MySqlRouteDao(DaoFactory daoFactory) {
         this.daoFactory = daoFactory;
@@ -55,12 +59,13 @@ public class MySqlRouteDao implements RouteDao {
     }
 
     public Route getRoute(int routeId) {
-        LOG.info("finding route "+routeId );
-       List<Route> routes = getAllRoutes();
-        for (Route ro : routes) if (ro.ROUTE_ID()==routeId) {
-            LOG.info("route was found");
-            return ro;
-        }
+        LOG.info("finding route " + routeId);
+        List<Route> routes = getAllRoutes();
+        for (Route ro : routes)
+            if (ro.ROUTE_ID() == routeId) {
+                LOG.info("route was found");
+                return ro;
+            }
         LOG.info("route was not found");
         return null;
     }
@@ -76,9 +81,9 @@ public class MySqlRouteDao implements RouteDao {
             preparedStatement.setString(3, route.ROUTE_NAME_RU());
             preparedStatement.setString(4, String.valueOf(route.ROUTE_TRANSPORT_TYPE()));
             int result = preparedStatement.executeUpdate();
-            LOG.info("adding new route was complete without exeption and result "+result);
+            LOG.info("adding new route was complete without exeption and result " + result);
             return result;
-            } catch (SQLException ex) {
+        } catch (SQLException ex) {
             ex.printStackTrace();
             LOG.warn("adding new route was caused exeption");
             return 0;
@@ -96,8 +101,8 @@ public class MySqlRouteDao implements RouteDao {
             connection = daoFactory.getConnection();
             preparedStatement = connection.prepareStatement(DELETE_ROUTE_BY_ID);
             preparedStatement.setInt(1, routeId);
-           int result = preparedStatement.executeUpdate();
-            LOG.info("delete route was complete without exeption and result "+result);
+            int result = preparedStatement.executeUpdate();
+            LOG.info("delete route was complete without exeption and result " + result);
             return result;
         } catch (SQLException ex) {
             ex.printStackTrace();
@@ -111,6 +116,6 @@ public class MySqlRouteDao implements RouteDao {
     }
 
     private Route map(ResultSet resultSet) throws SQLException {
-        return new Route(resultSet.getInt(1),resultSet.getString(2), resultSet.getString(3),TransportTypes.valueOf(resultSet.getString(4)));
+        return new Route(resultSet.getInt(1), resultSet.getString(2), resultSet.getString(3), TransportTypes.valueOf(resultSet.getString(4)));
     }
 }

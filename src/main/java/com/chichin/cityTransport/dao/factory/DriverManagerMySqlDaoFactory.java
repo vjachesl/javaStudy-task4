@@ -14,6 +14,13 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
+/**
+ * Class for Factory JDBC driver operation
+ *
+ * @author Viacheslav Chichin
+ * @version 1.0  June 20, 2015.
+ */
+
 public class DriverManagerMySqlDaoFactory extends DaoFactory {
 
     @Override

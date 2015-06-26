@@ -14,20 +14,24 @@ import java.util.List;
 import static com.chichin.cityTransport.dao.factory.DaoJdbcUtil.close;
 
 /**
- * Created by viacheslav on 13.06.15.
+ * Class for JDBC User DAO implementation
+ *
+ * @author Viacheslav Chichin
+ * @version 1.0  June 20, 2015.
  */
 public class MySqlUserDao implements UserDao {
 
     private DaoFactory daoFactory;
 
-    private static final String FIND_ALL_USER ="SELECT * FROM city_transport_db.users";
+    private static final String FIND_ALL_USER = "SELECT * FROM city_transport_db.users";
+
     public MySqlUserDao(DaoFactory daoFactory) {
         this.daoFactory = daoFactory;
     }
 
     public User getUser(String login, String password) {
-       User toBeFinded = new User(login, password);
-       User toReturn = null;
+        User toBeFinded = new User(login, password);
+        User toReturn = null;
         Connection connection = null;
         PreparedStatement preparedStatement = null;
         ResultSet resultSet = null;
@@ -53,6 +57,6 @@ public class MySqlUserDao implements UserDao {
     }
 
     private User map(ResultSet resultSet) throws SQLException {
-          return new User(resultSet.getString(1),resultSet.getString(3));
+        return new User(resultSet.getString(1), resultSet.getString(3));
     }
 }

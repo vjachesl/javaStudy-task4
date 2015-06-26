@@ -5,12 +5,19 @@ import com.chichin.cityTransport.entity.Route;
 import java.util.List;
 
 /**
- * Created by viacheslav on 11.06.15.
+ * Interface for creating contract for routes DAO implementation,
+ *
+ * @author Viacheslav Chichin
+ * @version 1.0  June 20, 2015.
  */
+
 public interface RouteDao {
-    public List<Route> getAllRoutes();
-    public Route getRoute(int routeId);
-    public int addNewRoute(Route route);
-    public int removeRoute(int routeId);
+    List<Route> getAllRoutes();
+
+    Route getRoute(int routeId);
+
+    int addNewRoute(Route route);
+
+    int removeRoute(int routeId);
 }
 

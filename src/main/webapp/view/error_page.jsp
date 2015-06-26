@@ -8,7 +8,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-  <title>City Transport System</title>
+    <title>City Transport System</title>
 </head>
 <body>
 Error with authentication.

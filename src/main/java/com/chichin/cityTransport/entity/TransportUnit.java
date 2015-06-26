@@ -1,16 +1,47 @@
 package com.chichin.cityTransport.entity;
-import static com.chichin.cityTransport.entity.init.TransportSystemSettingConstants.*;
 
 /**
- * Created by viacheslav on 11.06.15.
+ * Class for Transport units objects.
+ *
+ * @author Viacheslav Chichin
+ * @version 1.0  June 20, 2015.
  */
+
 public class TransportUnit {
+    /**
+     * Stores unit ID as final int
+     */
     private final int UNIT_ID;
+
+    /**
+     * Stores unit English Name as final String
+     */
     private final String MODEL_NAME_EN;
+
+    /**
+     * Stores unit Russian Name as final String
+     */
     private final String MODEL_NAME_RU;
+
+    /**
+     * Stores unit Transport Types as final Enum constant
+     */
     private TransportTypes TRANSPORT_TYPE;
+
+    /**
+     * Stores route ID as final int
+     */
     private int routeId;
 
+
+    /**
+     * Constructor
+     *
+     * @param UNIT_ID     - unit ID
+     * @param modelNameEn - model English Name
+     * @param modelNameRu - modelRussian Name
+     * @param routeId     - route Transport Types
+     */
     public TransportUnit(int UNIT_ID, String modelNameEn, String modelNameRu, TransportTypes TRANSPORT_TYPE, int routeId) {
         this.MODEL_NAME_EN = modelNameEn;
         this.MODEL_NAME_RU = modelNameRu;
@@ -19,6 +50,7 @@ public class TransportUnit {
         this.routeId = routeId;
     }
 
+    // Getters for parameters
     public int UNIT_ID() {
         return UNIT_ID;
     }
@@ -35,7 +67,7 @@ public class TransportUnit {
         return TRANSPORT_TYPE;
     }
 
-    public void setOnRoute(TransportUnit unit, Route route){
+    public void setOnRoute(TransportUnit unit, Route route) {
         routeId = route.ROUTE_ID();
     }
 
@@ -43,8 +75,8 @@ public class TransportUnit {
         return routeId;
     }
 
-    public void relizefromRoute(TransportUnit unit, Route route){
-        routeId=0;
+    public void relizefromRoute(TransportUnit unit, Route route) {
+        routeId = 0;
     }
 
     @Override

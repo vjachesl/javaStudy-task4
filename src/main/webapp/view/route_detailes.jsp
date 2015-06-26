@@ -1,12 +1,12 @@
-<%@ include file="/view/includePages/tag_direct.jspf"%>
-<%@ include file="/view/includePages/page_direct.jspf"%>
+<%@ include file="/view/includePages/tag_direct.jspf" %>
+<%@ include file="/view/includePages/page_direct.jspf" %>
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title>City Transport System</title>
 </head>
 <body>
-<%@ include file="/view/includePages/loc_login.jspf"%>
+<%@ include file="/view/includePages/loc_login.jspf" %>
 
 <div id="route-stops-result">
     <c:choose>
@@ -28,22 +28,31 @@
             <c:forEach items="${allStops}" var="stop">
                 <tr>
                     <td><c:out value="${stop.STOP_ID()}"></c:out></td>
-                    <td> </td>
+                    <td></td>
                     <td><c:out value="${language eq 'ru' ? stop.getNameRu() : stop.getNameEn()}"></c:out></td>
-                    <td> </td>
+                    <td></td>
                     <td><c:out value="${stop.getGeoPoint()}"/></td>
                 </tr>
             </c:forEach>
         </table>
-        <p><fmt:message key="route_detailes_jsp.label.stop_quantity"></fmt:message><c:out value="${allStops.size()}"></c:out></p>
+        <p><fmt:message key="route_detailes_jsp.label.stop_quantity"></fmt:message><c:out
+                value="${allStops.size()}"></c:out></p>
 
-        <p><fmt:message key="route_detailes_jsp.label.route_length"></fmt:message><fmt:formatNumber type="number" maxFractionDigits="2" value="${routeLength}" /> <fmt:message key="route_detailes_jsp.label.route_length_unit"></fmt:message></p>
+        <p><fmt:message key="route_detailes_jsp.label.route_length"></fmt:message><fmt:formatNumber type="number"
+                                                                                                    maxFractionDigits="2"
+                                                                                                    value="${routeLength}"/>
+            <fmt:message key="route_detailes_jsp.label.route_length_unit"></fmt:message></p>
 
-        <p><fmt:message key="route_detailes_jsp.label.route_time"></fmt:message> <fmt:formatNumber type="number" maxFractionDigits="0" value="${routeTime}" /></p>
+        <p><fmt:message key="route_detailes_jsp.label.route_time"></fmt:message> <fmt:formatNumber type="number"
+                                                                                                   maxFractionDigits="0"
+                                                                                                   value="${routeTime}"/></p>
 
-        <p><fmt:message key="route_detailes_jsp.label.route_transp_unit"></fmt:message> <c:out value="${routeUnitsQuantity}"></c:out></p>
+        <p><fmt:message key="route_detailes_jsp.label.route_transp_unit"></fmt:message> <c:out
+                value="${routeUnitsQuantity}"></c:out></p>
 
-        <p><fmt:message key="route_detailes_jsp.label.route_interval"></fmt:message> <fmt:formatNumber type="number" maxFractionDigits="0" value="${routeTime*2/routeUnitsQuantity}" /></p>
+        <p><fmt:message key="route_detailes_jsp.label.route_interval"></fmt:message> <fmt:formatNumber type="number"
+                                                                                                       maxFractionDigits="0"
+                                                                                                       value="${routeTime*2/routeUnitsQuantity}"/></p>
 
         <p><input type="submit" class="button-accept" name="route_transport_units" value="Get Transport Units"/></p>
 
@@ -51,8 +60,11 @@
         </c:otherwise>
         </c:choose>
 </div>
+</div>
+<form action="routes" accept-charset="UTF-8" method="post">
+    <input type="submit" value="Back to Routes List">
+</form>
 <br>
-<br>
-<%@ include file="/view/includePages/foot.jspf"%>
+<%@ include file="/view/includePages/foot.jspf" %>
 </body>
 </html>

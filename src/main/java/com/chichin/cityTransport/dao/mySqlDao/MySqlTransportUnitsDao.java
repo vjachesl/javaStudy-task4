@@ -1,6 +1,7 @@
 package com.chichin.cityTransport.dao.mySqlDao;
 
 import static com.chichin.cityTransport.dao.factory.DaoJdbcUtil.*;
+
 import com.chichin.cityTransport.dao.factory.DaoFactory;
 import com.chichin.cityTransport.dao.interfaces.TransportUnitsDao;
 import com.chichin.cityTransport.entity.TransportTypes;
@@ -12,26 +13,29 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by viacheslav on 13.06.15.
+ * Class for JDBC Transport UNITS DAO implementation
+ *
+ * @author Viacheslav Chichin
+ * @version 1.0  June 20, 2015.
  */
 public class MySqlTransportUnitsDao implements TransportUnitsDao {
     private static final Logger LOG = Logger.getLogger(MySqlTransportUnitsDao.class);
 
     private DaoFactory daoFactory;
 
-    private static final String FIND_ALL_TRANSPORT_UNITS ="SELECT * FROM city_transport_db.transport_units";
-    private static final String FIND_TRANSPORT_UNITS_FROM_ROUTE ="SELECT * FROM city_transport_db.transport_units WHERE ROUTE_ID=(?)";
-    private static final String FIND_TRANSPORT_UNITS_WITH_NULL_ROUTE ="SELECT * FROM city_transport_db.transport_units WHERE ROUTE_ID IS null;";
-    private static final String ADD_TRANSPORT_UNIT ="INSERT INTO city_transport_db.transport_units \n" +
-           "\t (UNIT_ID, MODEL_NAME_EN, MODEL_NAME_RU, TRANSPORT_TYPE, ROUTE_ID)\n" +
-           "\t values (?, ?, ?, ?)";
-    private static final String UPDATE_TRANSPORT_UNIT_TO_ROUTE ="UPDATE city_transport_db.transport_units\n" +
+    private static final String FIND_ALL_TRANSPORT_UNITS = "SELECT * FROM city_transport_db.transport_units";
+    private static final String FIND_TRANSPORT_UNITS_FROM_ROUTE = "SELECT * FROM city_transport_db.transport_units WHERE ROUTE_ID=(?)";
+    private static final String FIND_TRANSPORT_UNITS_WITH_NULL_ROUTE = "SELECT * FROM city_transport_db.transport_units WHERE ROUTE_ID IS null;";
+    private static final String ADD_TRANSPORT_UNIT = "INSERT INTO city_transport_db.transport_units \n" +
+            "\t (UNIT_ID, MODEL_NAME_EN, MODEL_NAME_RU, TRANSPORT_TYPE, ROUTE_ID)\n" +
+            "\t values (?, ?, ?, ?)";
+    private static final String UPDATE_TRANSPORT_UNIT_TO_ROUTE = "UPDATE city_transport_db.transport_units\n" +
             "\t SET ROUTE_ID=(?) WHERE UNIT_ID=(?)";
 
-    private static final String REMOVE_TRANSPORT_UNIT_FROM_ROUTE ="UPDATE city_transport_db.transport_units\n" +
+    private static final String REMOVE_TRANSPORT_UNIT_FROM_ROUTE = "UPDATE city_transport_db.transport_units\n" +
             "\t SET ROUTE_ID= null WHERE UNIT_ID=(?)";
 
-    private static final String DELETE_TRANSPORT_UNIT_BY_ID =" DELETE FROM city_transport_db.transport_units\n" +
+    private static final String DELETE_TRANSPORT_UNIT_BY_ID = " DELETE FROM city_transport_db.transport_units\n" +
             "\t WHERE UNIT_ID=(?)";
 
 
@@ -40,12 +44,13 @@ public class MySqlTransportUnitsDao implements TransportUnitsDao {
     }
 
     public TransportUnit getTransportUnit(int unitId) {
-        LOG.info("finding unit "+unitId );
+        LOG.info("finding unit " + unitId);
         List<TransportUnit> transportUnits = getAllTransportUnits();
-        for (TransportUnit tu : transportUnits) if (tu.UNIT_ID()==unitId) {
-            LOG.info("unit was found");
-            return tu;
-        }
+        for (TransportUnit tu : transportUnits)
+            if (tu.UNIT_ID() == unitId) {
+                LOG.info("unit was found");
+                return tu;
+            }
         LOG.info("unit was not found");
         return null;
     }
@@ -74,7 +79,7 @@ public class MySqlTransportUnitsDao implements TransportUnitsDao {
     }
 
     public List<TransportUnit> getRouteTransportUnits(int routeId) {
-        if (routeId==0) return getZeroTransportUnits();
+        if (routeId == 0) return getZeroTransportUnits();
         Connection connection = null;
         PreparedStatement preparedStatement = null;
         ResultSet resultSet = null;
@@ -95,7 +100,7 @@ public class MySqlTransportUnitsDao implements TransportUnitsDao {
             close(preparedStatement);
             close(connection);
         }
-        LOG.info("list of units from route "+routeId+" was formed");
+        LOG.info("list of units from route " + routeId + " was formed");
         return transportUnits;
     }
 
@@ -134,7 +139,7 @@ public class MySqlTransportUnitsDao implements TransportUnitsDao {
             preparedStatement.setString(3, unit.MODEL_NAME_RU());
             preparedStatement.setString(4, String.valueOf(unit.TRANSPORT_TYPE()));
             int result = preparedStatement.executeUpdate();
-            LOG.info("unit "+unit.UNIT_ID()+" was added with result"+ result);
+            LOG.info("unit " + unit.UNIT_ID() + " was added with result" + result);
             return result;
         } catch (SQLException ex) {
             LOG.warn("was caused an exception during query executing");
@@ -155,7 +160,7 @@ public class MySqlTransportUnitsDao implements TransportUnitsDao {
             preparedStatement.setInt(1, routeId);
             preparedStatement.setInt(2, unitId);
             int result = preparedStatement.executeUpdate();
-            LOG.info("unit "+unitId+" was assigned to route"+routeId+" with result "+ result);
+            LOG.info("unit " + unitId + " was assigned to route" + routeId + " with result " + result);
             return result;
         } catch (SQLException ex) {
             LOG.warn("was caused an exception during query executing");
@@ -175,7 +180,7 @@ public class MySqlTransportUnitsDao implements TransportUnitsDao {
             preparedStatement = connection.prepareStatement(REMOVE_TRANSPORT_UNIT_FROM_ROUTE);
             preparedStatement.setInt(1, unitId);
             int result = preparedStatement.executeUpdate();
-            LOG.info("unit "+unitId+" was assigned to route null with result "+ result);
+            LOG.info("unit " + unitId + " was assigned to route null with result " + result);
             return result;
         } catch (SQLException ex) {
             LOG.warn("was caused an exception during query executing");
@@ -196,7 +201,7 @@ public class MySqlTransportUnitsDao implements TransportUnitsDao {
             preparedStatement = connection.prepareStatement(DELETE_TRANSPORT_UNIT_BY_ID);
             preparedStatement.setInt(1, unitId);
             int result = preparedStatement.executeUpdate();
-            LOG.info("unit "+unitId+" was deleted" + result);
+            LOG.info("unit " + unitId + " was deleted" + result);
             return result;
         } catch (SQLException ex) {
             ex.printStackTrace();
@@ -211,7 +216,7 @@ public class MySqlTransportUnitsDao implements TransportUnitsDao {
 
     private TransportUnit map(ResultSet resultSet) throws SQLException {
         return new TransportUnit(resultSet.getInt(1),
-                resultSet.getString(2),resultSet.getString(3),
+                resultSet.getString(2), resultSet.getString(3),
                 TransportTypes.valueOf(resultSet.getString(4)),
                 resultSet.getInt(5));
     }

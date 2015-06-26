@@ -6,18 +6,52 @@ import static com.chichin.cityTransport.entity.init.TransportSystemSettingConsta
 import static java.lang.Math.*;
 
 /**
- * Created by viacheslav on 11.06.15.
+ * Class for Route objects.
+ *
+ * @author Viacheslav Chichin
+ * @version 1.0  June 20, 2015.
  */
+
 public class Route {
+    /**
+     * Stores route ID as final int
+     */
     private final int ROUTE_ID;
+
+    /**
+     * Stores route English Name as final String
+     */
     private final String ROUTE_NAME_EN;
+
+    /**
+     * Stores route Russian Name as final String
+     */
     private final String ROUTE_NAME_RU;
 
+    /**
+     * Stores route Transport Types as final Enum constant
+     */
     private final TransportTypes ROUTE_TRANSPORT_TYPE;
+
+    /**
+     * Stores route Transport Units as List of Transport Units
+     */
     private List<TransportUnit> transportUnits;
+
+    /**
+     * Stores route Stops as List of Stops
+     */
     private List<Stop> stops;
 
-    public Route( int ROUTE_ID, String routeNameEn, String routeNameRu, TransportTypes transportType) {
+    /**
+     * Constructor
+     *
+     * @param ROUTE_ID      - route ID
+     * @param routeNameEn   - route English Name
+     * @param routeNameRu   - route Russian Name
+     * @param transportType - route Transport Types
+     */
+    public Route(int ROUTE_ID, String routeNameEn, String routeNameRu, TransportTypes transportType) {
         this.ROUTE_ID = ROUTE_ID;
         this.ROUTE_NAME_EN = routeNameEn;
         this.ROUTE_NAME_RU = routeNameRu;
@@ -25,6 +59,8 @@ public class Route {
         stops = new ArrayList<Stop>();
         transportUnits = new ArrayList<TransportUnit>();
     }
+
+    // Getters for parameters
     public int ROUTE_ID() {
         return ROUTE_ID;
     }
@@ -32,6 +68,7 @@ public class Route {
     public String ROUTE_NAME_EN() {
         return ROUTE_NAME_EN;
     }
+
     public String ROUTE_NAME_RU() {
         return ROUTE_NAME_RU;
     }
@@ -43,48 +80,57 @@ public class Route {
     public List<TransportUnit> getTransportUnits() {
         return transportUnits;
     }
+
     public List<Stop> getStops() {
         return stops;
     }
+
+    // Setter for parametrs
     public void setTransportUnits(List<TransportUnit> transportUnits) {
         this.transportUnits = transportUnits;
     }
+
     public void setStops(List<Stop> stops) {
         this.stops = stops;
     }
 
-    public void addTransportUnit(TransportUnit unit){
+    public void addTransportUnit(TransportUnit unit) {
         transportUnits.add(unit);
     }
-    public boolean removeTransportUnit(TransportUnit unit){
-       return transportUnits.remove(unit);
+
+    public boolean removeTransportUnit(TransportUnit unit) {
+        return transportUnits.remove(unit);
     }
-    public void addStop(Stop stop){
+
+    public void addStop(Stop stop) {
         stops.add(stop);
     }
-    public void removeStop(Stop stop){
+
+    public void removeStop(Stop stop) {
         stops.remove(stop);
     }
 
-    public double getRouteLength (){
-        if (stops.size()<2) return 0;
+    // ПОлучаем длину маршрута
+    public double getRouteLength() {
+        if (stops.size() < 2) return 0;
         else {
             ArrayList<GeoPoint> points = new ArrayList<GeoPoint>();
             Iterator<Stop> iter = stops.iterator();
-            while(iter.hasNext())
+            while (iter.hasNext())
                 points.add(iter.next().getGeoPoint());
             double routeLength = 0.;
-            for(int i=1; i<points.size(); i++)
-               routeLength += getDistanceFromOneStopToEnother(points.get(i-1),points.get(i));
-           return routeLength;
+            for (int i = 1; i < points.size(); i++)
+                routeLength += getDistanceFromOneStopToEnother(points.get(i - 1), points.get(i));
+            return routeLength;
         }
     }
 
-    public double getRouteTimeDerth(){
-       double length = getRouteLength();
-        System.out.println("route length"+length);
+    // Рассчитываем время, за которое проезжается маршрут.
+    public double getRouteTimeDerth() {
+        double length = getRouteLength();
+        System.out.println("route length" + length);
 
-       return (length/CITY_AVERAGE_SPEED)*MINUTES_IN_HOUR;
+        return (length / CITY_AVERAGE_SPEED) * MINUTES_IN_HOUR;
     }
 
     // Рассчитываем расстояние между точками
@@ -93,7 +139,7 @@ public class Route {
         final double dlat = deg2rad(point1.getLat() - point2.getLat());
         final double a = sin(dlat / 2) * sin(dlat / 2) + cos(deg2rad(point2.getLat()))
                 * cos(deg2rad(point1.getLat())) * sin(dlng / 2) * sin(dlng / 2);
-        return 2 * EARTH_RADIUS* atan2(Math.sqrt(a), Math.sqrt(1 - a));
+        return 2 * EARTH_RADIUS * atan2(Math.sqrt(a), Math.sqrt(1 - a));
     }
 
     /**
